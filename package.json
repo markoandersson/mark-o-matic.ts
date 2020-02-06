@@ -1,0 +1,61 @@
+{
+  "name": "mark-o-matic.ts",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@types/jest": "^24.0.0",
+    "@types/node": "^12.0.0",
+    "@types/react": "^16.9.0",
+    "@types/react-dom": "^16.9.0",
+    "antd": "^3.26.8",
+    "lodash": "^4.17.15",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.3.1",
+    "redux": "^4.0.5",
+    "redux-api-middleware": "^3.2.0",
+    "redux-thunk": "^2.3.0",
+    "styled-components": "^5.0.1",
+    "typescript": "~3.7.2"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "validate_architecture": "depcruise --validate .dependency-cruiser.json src",
+    "mock-backend": "json-server mocks/api.json --routes mocks/routes.json --port 5001 --watch --delay 1000"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.1.1",
+    "@testing-library/react": "^9.4.0",
+    "@testing-library/user-event": "^8.1.0",
+
+    "@testing-library/dom": "^6.12.2",
+    "dependency-cruiser": "^7.1.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "flux-standard-action": "^2.1.1",
+    "jest-fetch-mock": "^3.0.1",
+    "json-server": "^0.15.1",
+    "prettier": "^1.19.1",
+    "redux-devtools": "^3.5.0"
+  }
+}

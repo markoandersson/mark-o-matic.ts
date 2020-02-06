@@ -1,0 +1,79 @@
+{
+  "extends": "dependency-cruiser/configs/recommended-strict",
+  "forbidden": [
+    {
+      "name": "no-gpl-apl-licenses",
+      "severity": "error",
+      "from": {},
+      "to": {
+        "license": "GPL|APL"
+      }
+    },
+    {
+      "name": "arc:no-non-index-view-imports",
+      "comment": "Don't allow imports from root to views expect those views exported via index.js",
+      "severity": "error",
+      "from": {
+        "path": "^src/([^/]+).js$"
+      },
+      "to": {
+        "pathNot": "(^src/([^/]+).$|^src/views/.+/index\\.js|^node_modules)"
+      }
+    },
+    {
+      "name": "arc:no-non-index-shared-component-imports",
+      "comment": "Allow only import shared components via index.js exports",
+      "severity": "error",
+      "from": {
+        "path": "^src/views/.+/([^/]+).js$",
+        "pathNot": ".(test|spec).js$"
+      },
+      "to": {
+        "pathNot": "(^src/views/|^src/shared/.+/index\\.js|^node_modules)"
+      }
+    },
+    {
+      "name": "arc:no-inter-views",
+      "comment": "Don't allow imports between views. Each view should be completely separated.",
+      "severity": "error",
+      "from": {
+        "path": "^src/views/([^/]+)/.+"
+      },
+      "to": {
+        "path": "^src/views/([^/]+)/.+",
+        "pathNot": "^src/views/$1/.+"
+      }
+    },
+    {
+      "name": "arc:not-to-test",
+      "comment": "Don't allow dependencies from test-code to production-code",
+      "severity": "error",
+      "from": {
+        "pathNot": ".(test|spec).js$"
+      },
+      "to": {
+        "path": ".(test|spec).js$"
+      }
+    },
+    {
+      "name": "arc:no-non-index-test-imports",
+      "comment": "Don't allow test code to import dependencies other than exposed via index.js",
+      "severity": "error",
+      "from": {
+        "path": ".(test|spec).js$"
+      },
+      "to": {
+        "pathNot": "(^src/views|index.js$|^node_modules)"
+      }
+    }
+  ],
+  "options": {
+    "doNotFollow": "node_modules",
+    "moduleSystems": [
+      "es6"
+    ],
+    "exclude": {
+      "path": "mocks/api$"
+    }
+  }
+}
