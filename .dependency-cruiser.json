@@ -11,25 +11,25 @@
     },
     {
       "name": "arc:no-non-index-view-imports",
-      "comment": "Don't allow imports from root to views expect those views exported via index.js",
+      "comment": "Don't allow imports from root to views expect those views exported via index.js/ts",
       "severity": "error",
       "from": {
-        "path": "^src/([^/]+).js$"
+        "path": "^src/([^/]+).(js|jsx|ts|tsx)$"
       },
       "to": {
-        "pathNot": "(^src/([^/]+).$|^src/views/.+/index\\.js|^node_modules)"
+        "pathNot": "(^src/([^/]+).$|^src/views/.+/index\\.(js|jsx|ts|tsx)|^node_modules)"
       }
     },
     {
       "name": "arc:no-non-index-shared-component-imports",
-      "comment": "Allow only import shared components via index.js exports",
+      "comment": "Allow only import shared components via index.(js|ts) exports",
       "severity": "error",
       "from": {
-        "path": "^src/views/.+/([^/]+).js$",
-        "pathNot": ".(test|spec).js$"
+        "path": "^src/views/.+/([^/]+).(js|jsx|ts|tsx)$",
+        "pathNot": ".(test|spec).(js|jsx|ts|tsx)$"
       },
       "to": {
-        "pathNot": "(^src/views/|^src/shared/.+/index\\.js|^node_modules)"
+        "pathNot": "(^src/views/|^src/shared/.+/index\\.(js|jsx|ts|tsx)|^node_modules)"
       }
     },
     {
@@ -49,10 +49,10 @@
       "comment": "Don't allow dependencies from test-code to production-code",
       "severity": "error",
       "from": {
-        "pathNot": ".(test|spec).js$"
+        "pathNot": ".(test|spec).(js|ts)$"
       },
       "to": {
-        "path": ".(test|spec).js$"
+        "path": ".(test|spec).(js|ts)$"
       }
     },
     {
@@ -60,10 +60,10 @@
       "comment": "Don't allow test code to import dependencies other than exposed via index.js",
       "severity": "error",
       "from": {
-        "path": ".(test|spec).js$"
+        "path": ".(test|spec).(js|ts)$"
       },
       "to": {
-        "pathNot": "(^src/views|index.js$|^node_modules)"
+        "pathNot": "(^src/views|index.(js|ts)$|^node_modules)"
       }
     }
   ],
@@ -74,6 +74,7 @@
     ],
     "exclude": {
       "path": "mocks/api$"
-    }
+    },
+    "tsPreCompilationDeps": true
   }
 }
