@@ -8,11 +8,15 @@ import { AppThunk, BackendCallState, RootState } from '../../shared/types';
 const createAction = createPrefixedActionCreator('mark-o-matic.js/backend-call');
 
 const fetchDataFromBackendStart = createAction('fetchDataFromBackendStart');
-const fetchDataFromBackendSuccess = createAction('fetchDataFromBackendSuccess');
-const fetchDataFromBackendFailure = createAction('fetchDataFromBackendFailure');
+const fetchDataFromBackendSuccess = createAction<BackendResponse>('fetchDataFromBackendSuccess');
+const fetchDataFromBackendFailure = createAction<Error>('fetchDataFromBackendFailure');
 
 export interface BackendRequest {
   request: string;
+}
+
+export interface BackendResponse {
+  response: string;
 }
 
 const initialState: BackendCallState = {

@@ -1,8 +1,9 @@
 import React from 'react';
-import { mockApiResponse, renderWithRedux, resetMockedResponses, mockApiError } from '../../test-utils';
+import { mockApiError, mockApiResponse, renderWithRedux, resetMockedResponses } from '../../test-utils';
 import { BackendCallComponent } from './backend-call-component';
 import { fireEvent } from '@testing-library/react';
 import { waitForElement } from '@testing-library/dom';
+import { BackendResponseBuilder } from '../../test-utils/backend-call-test-data-builder';
 
 describe('Test backend call component', function() {
   afterEach(() => {
@@ -26,9 +27,11 @@ describe('Test backend call component', function() {
   };
 
   it('should call backend and display response', async function() {
-    mockApiResponse({
+    const response = BackendResponseBuilder.build({
       response: 'hello'
     });
+
+    mockApiResponse(response);
 
     const label = await callBackendAndGetLabel();
 
