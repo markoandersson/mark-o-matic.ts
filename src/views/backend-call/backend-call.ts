@@ -46,7 +46,7 @@ export const actions = {
 
 export default createReducer(initialState, builder => {
   builder
-    .addCase(fetchDataFromBackendStart, (state, action) => {
+    .addCase(fetchDataFromBackendStart, state => {
       state.loading = true;
       state.response = '';
     })
