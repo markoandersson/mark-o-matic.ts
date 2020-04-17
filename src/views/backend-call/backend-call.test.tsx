@@ -2,7 +2,7 @@ import React from 'react';
 import { mockApiError, mockApiResponse, renderWithRedux, resetMockedResponses } from '../../test-utils';
 import { BackendCallComponent } from './backend-call-component';
 import { fireEvent } from '@testing-library/react';
-import { waitForElement } from '@testing-library/dom';
+import { waitFor } from '@testing-library/dom';
 import { BackendResponseBuilder } from '../../test-utils/backend-call-test-data-builder';
 
 describe('Test backend call component', function() {
@@ -15,7 +15,7 @@ describe('Test backend call component', function() {
 
     return {
       button: getByText(/fetch from back-end/i),
-      getLabel: async () => await waitForElement(() => getByText(/response/i), { container })
+      getLabel: async () => await waitFor(() => getByText(/response/i), { container })
     };
   };
 

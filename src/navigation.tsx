@@ -1,4 +1,5 @@
-import { Icon, Menu } from 'antd';
+import { Menu } from 'antd';
+import { HomeOutlined, NumberOutlined, CloudDownloadOutlined } from '@ant-design/icons'
 import React from 'react';
 import { Link, Route, Switch } from 'react-router-dom';
 import { HomePage } from './views/home/';
@@ -9,17 +10,17 @@ export const Navigation = () => {
   return (
     <Menu theme="dark" defaultSelectedKeys={['1']} mode="inline">
       <Menu.Item key="1">
-        <Icon type="home" />
+        <HomeOutlined />
         <span>Home</span>
         <Link to="/" />
       </Menu.Item>
       <Menu.Item key="2">
-        <Icon type="number" />
+        <NumberOutlined />
         <span>Counter</span>
         <Link to="/counter" />
       </Menu.Item>
       <Menu.Item key="3">
-        <Icon type="cloud-download" />
+        <CloudDownloadOutlined />
         <span>API-call</span>
         <Link to="/api-call" />
       </Menu.Item>
