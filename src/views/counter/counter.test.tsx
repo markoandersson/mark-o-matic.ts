@@ -1,46 +1,70 @@
 import React from 'react';
 import { CounterComponent } from './counter-component';
 import { renderWithRedux } from '../../test-utils';
-import { fireEvent } from '@testing-library/react';
+import { fireEvent, waitFor, cleanup } from '@testing-library/react';
+import { act } from 'react-dom/test-utils';
 
-describe('Counter-component tests', function() {
+beforeEach(() => cleanup());
+
+describe('Counter-component tests', function () {
   const renderCounterComponent = () => {
     const { getByTitle, getByText } = renderWithRedux(<CounterComponent />);
 
     return {
-      counter: getByTitle('counter'),
-      increaseButton: getByText(/increase/i),
-      decreaseButton: getByText(/decrease/i)
+      getCounterValue: () => getByTitle('counter').querySelector('.current') || getByTitle('counter'), 
+      pressIncreaseButton: () => {
+        fireEvent.click(getByText(/increase/i));
+      },
+      pressDecreaseButton: () => {
+        fireEvent.click(getByText(/decrease/i));
+      },
     };
   };
 
-  it('should render zero when first mounted', function() {
-    const { counter } = renderCounterComponent();
+  it('should render zero when first mounted', function () {
+    const { getCounterValue } = renderCounterComponent();
 
-    expect(counter).toHaveTextContent('0');
+    expect(getCounterValue()).toHaveTextContent('0');
   });
 
-  it('should increase value', function() {
-    const { counter, increaseButton } = renderCounterComponent();
-    fireEvent.click(increaseButton);
+  it('should increase value', async function () {
+    const { getCounterValue, pressIncreaseButton } = renderCounterComponent();
 
-    expect(counter).toHaveTextContent('1');
+    await act(async () => {
+      pressIncreaseButton();
+    });
+
+    await waitFor(() => {
+      expect(getCounterValue()).toHaveTextContent('1');
+    });
   });
 
-  it('should decrease value', function() {
-    const { counter, increaseButton, decreaseButton } = renderCounterComponent();
+  it('should decrease value', async function () {
+    const { getCounterValue, pressIncreaseButton, pressDecreaseButton } = renderCounterComponent();
 
-    fireEvent.click(increaseButton);
-    fireEvent.click(increaseButton);
-    fireEvent.click(decreaseButton);
+    await act(async () => {
+      await pressIncreaseButton();
+      await pressIncreaseButton();
+      await pressIncreaseButton();
+      await pressDecreaseButton();
+    });
 
-    expect(counter).toHaveTextContent('1');
+    await waitFor(() => {
+      expect(getCounterValue()).toHaveTextContent('2');
+    });
   });
 
-  it('should not have negative count', function() {
-    const { counter, decreaseButton } = renderCounterComponent();
-    fireEvent.click(decreaseButton);
+  it('should not have negative count', async function () {
+    const { getCounterValue, pressDecreaseButton,pressIncreaseButton } = renderCounterComponent();
 
-    expect(counter).toHaveTextContent('0');
+    await act(async () => {
+      pressDecreaseButton();
+      pressIncreaseButton()
+      pressIncreaseButton()
+    });
+
+    await waitFor(() => {
+      expect(getCounterValue()).toHaveTextContent('0');
+    });
   });
 });

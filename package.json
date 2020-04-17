@@ -3,18 +3,19 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@ant-design/icons": "^4.0.6",
     "@reduxjs/toolkit": "latest",
     "@types/jest": "^25.1.2",
-    "@types/node": "^12.0.0",
+    "@types/node": "^13.11.1",
     "@types/react": "^16.9.0",
     "@types/react-dom": "^16.9.0",
-    "antd": "^3.26.8",
+    "antd": "^4.1.3",
     "lodash": "^4.17.15",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
     "react-redux": "^7.1.3",
     "react-router-dom": "^5.1.2",
-    "react-scripts": "3.3.1",
+    "react-scripts": "3.4.1",
     "redux": "^4.0.5",
     "redux-api-middleware": "^3.2.0",
     "redux-thunk": "^2.3.0",
@@ -24,10 +25,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
-    "validate_architecture": "depcruise --validate .dependency-cruiser.json src",
-    "mock-backend": "json-server mocks/api.json --routes mocks/routes.json --port 5001 --watch --delay 1000"
+    "validate_architecture": "depcruise --validate .dependency-cruiser.json src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -45,25 +45,24 @@
     ]
   },
   "devDependencies": {
-    "@testing-library/dom": "^6.12.2",
+    "@testing-library/dom": "^7.2.1",
     "@testing-library/jest-dom": "^5.1.1",
-    "@testing-library/react": "^9.4.0",
-    "@testing-library/user-event": "^8.1.0",
+    "@testing-library/react": "^10.0.2",
     "@types/faker": "^4.1.9",
     "@types/lodash": "^4.14.149",
     "@types/react-redux": "^7.1.7",
     "@types/react-router-dom": "^5.1.3",
     "@types/redux-api-middleware": "^3.0.7",
-    "@types/styled-components": "^4.4.2",
-    "dependency-cruiser": "^7.1.0",
+    "@types/styled-components": "^5.1.0",
+    "dependency-cruiser": "^8.2.0",
     "eslint-config-prettier": "^6.10.0",
     "eslint-plugin-prettier": "^3.1.2",
     "factory.ts": "^0.5.1",
     "faker": "^4.1.0",
     "flux-standard-action": "^2.1.1",
-    "jest-fetch-mock": "^3.0.1",
-    "json-server": "^0.15.1",
-    "prettier": "^1.19.1",
+    "jest-environment-jsdom-sixteen": "^1.0.3",
+    "miragejs": "^0.1.37",
+    "prettier": "^2.0.4",
     "redux-devtools": "^3.5.0",
     "ts-jest": "^25.2.0"
   }
