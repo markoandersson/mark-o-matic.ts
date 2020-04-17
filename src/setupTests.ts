@@ -17,5 +17,3 @@ Object.defineProperty(window, 'matchMedia', {
     dispatchEvent: jest.fn(),
   })),
 });
-
-require('jest-fetch-mock').enableMocks();

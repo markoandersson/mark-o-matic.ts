@@ -27,8 +27,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jest-environment-jsdom-sixteen",
     "eject": "react-scripts eject",
-    "validate_architecture": "depcruise --validate .dependency-cruiser.json src",
-    "mock-backend": "json-server mocks/api.json --routes mocks/routes.json --port 5001 --watch --delay 1000"
+    "validate_architecture": "depcruise --validate .dependency-cruiser.json src"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -62,8 +61,8 @@
     "faker": "^4.1.0",
     "flux-standard-action": "^2.1.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
-    "jest-fetch-mock": "^3.0.1",
     "json-server": "^0.16.1",
+    "miragejs": "^0.1.37",
     "prettier": "^2.0.4",
     "redux-devtools": "^3.5.0",
     "ts-jest": "^25.2.0"

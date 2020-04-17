@@ -22,7 +22,8 @@ The technology stack is identical, excluding flow-type. The code has been modifi
 Development dependencies:
 - [Dependency-cruiser](https://github.com/sverweij/dependency-cruiser) - enforce architectural constraints
 - [Testing library for React](https://testing-library.com/) - Shallow render the React components in unit tests
-- [Jest-fetch-mock](https://github.com/jefflau/jest-fetch-mock) - Mocking fetch API -calls with this library is a joy!
+- ~~-[Jest-fetch-mock](https://github.com/jefflau/jest-fetch-mock) - Mocking fetch API -calls with this library is a joy!~~
+- [MirageJS](https://miragejs.com/) - Changed fetch mocking to MirageJS, which both acts as a mock development server and configurable mock server in tests. Way better than anything else so far.
 - [Prettier](https://prettier.io/) - You'll need to format your code in order to be a professional, right?
 - [ESLint with prettier](https://prettier.io/docs/en/integrating-with-linters.html) - 
 - [factory.ts](https://github.com/willryan/factory.ts) - Create easily test data builders from existing Typescript interfaces
@@ -35,7 +36,6 @@ This project has been bootstrapped with `create-react-app` using the typescript-
 `npx create-react-app [project-name] --template typescript`
 
 1. `npm install`
-1. `npm run mock-backend`
 1. `npm run start`
 
 Check architectural constraints:
@@ -59,7 +59,7 @@ Architectural constraints have been defined as dependency-cruiser rules which sh
 intend to ease up the maintainability of the software in the long run.
 
 - Each view should be isolated from each other to allow separation of views in the future. Views may not depend on each other.
-- Main application (routes, reducers, etc) may only depend on views through module exports (from index.js)
+- Main application (routes, reducers, etc) may only depend on views through module exports (from index.ts)
 - Components can be shared between views by moving them to shared-folder and exporting them as module exports.
 - There may be no circular dependencies
 - Production code may not depend on test code
@@ -71,7 +71,7 @@ All elements in the component are accessed in similar manner than user would acc
 
 Tests in this project use the same redux store than the implementation components so that the whole stack will be tested (React component and redux store).
 
-External API-calls have been mocked with `jest-fetch-mock`-library, thus the whole stack from the UI to the external service and back can be tested with single unit test.
+External API-calls have been mocked with `MirageJS`-library, thus the whole stack from the UI to the external service and back can be tested with single unit test.
 
 Tests use page-object -pattern to decouple tests from the implementation details. Also, test data builders are used to easily build valid objects with randomized data for testing purposes. 
 Tests can then overwrite specific properties of the test object to have valid data for that test scenario, see [backend-call.test.ts](src/views/backend-call/backend-call.test.tsx) for more details..
