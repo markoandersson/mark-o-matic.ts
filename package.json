@@ -61,7 +61,6 @@
     "faker": "^4.1.0",
     "flux-standard-action": "^2.1.1",
     "jest-environment-jsdom-sixteen": "^1.0.3",
-    "json-server": "^0.16.1",
     "miragejs": "^0.1.37",
     "prettier": "^2.0.4",
     "redux-devtools": "^3.5.0",
